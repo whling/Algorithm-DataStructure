@@ -1,4 +1,4 @@
-package com.whl.algorithm;
+package com.whl.demo;
 
 /**
  * Created by whling on 2018/3/30.

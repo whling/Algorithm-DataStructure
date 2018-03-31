@@ -6,9 +6,18 @@ package com.whl.data_structure;
  */
 public class SingleLinkedList {
 
+    public static void main(String[] args) {
+        SingleLinkedList singleLinkedList = new SingleLinkedList();
+        Node head = singleLinkedList.init(10);
+        traverse(head);
+
+        Node newHead = reverse(head);
+        traverse(newHead);
+    }
+
     class Node {
-        private int data;
-        private Node next;
+        public int data;
+        public Node next;
 
         public Node(int data, Node next) {
             this.data = data;
@@ -32,5 +41,45 @@ public class SingleLinkedList {
             cur = cur.next;
         }
         return node;
+    }
+
+    /**
+     * 遍历单链表
+     *
+     * @param head
+     */
+    public static void traverse(Node head) {
+        Node cur = head;
+        while (true) {
+            if (cur == null) {
+                break;
+            }
+            System.out.println(cur.data);
+            cur = cur.next;
+        }
+    }
+
+    /**
+     * 单链表反转
+     *
+     * @param head
+     * @return 新的头结点
+     */
+    public static Node reverse(Node head) {
+        if (head.next == null) {
+            return head;
+        }
+        Node cur = head.next;
+        Node pre = head;
+
+        while (cur != null) {
+            Node suf = cur.next;
+            cur.next = pre;
+
+            pre = cur;
+            cur = suf;
+        }
+        head.next = null;
+        return pre;
     }
 }
