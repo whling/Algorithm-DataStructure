@@ -8,10 +8,10 @@ public class SingleLinkedList {
 
     public static void main(String[] args) {
         SingleLinkedList singleLinkedList = new SingleLinkedList();
-        Node head = singleLinkedList.init(10);
+        Node head = singleLinkedList.init(3);
         traverse(head);
 
-        Node newHead = reverse(head);
+        Node newHead = reverse2(head);
         traverse(newHead);
     }
 
@@ -50,22 +50,19 @@ public class SingleLinkedList {
      */
     public static void traverse(Node head) {
         Node cur = head;
-        while (true) {
-            if (cur == null) {
-                break;
-            }
+        while (cur != null) {
             System.out.println(cur.data);
             cur = cur.next;
         }
     }
 
     /**
-     * 单链表反转
+     * 单链表反转,遍历方式
      *
      * @param head
      * @return 新的头结点
      */
-    public static Node reverse(Node head) {
+    public static Node reverse1(Node head) {
         if (head.next == null) {
             return head;
         }
@@ -81,5 +78,31 @@ public class SingleLinkedList {
         }
         head.next = null;
         return pre;
+    }
+
+    /**
+     * 单链表反转,递归方式
+     *
+     * @param head
+     * @return 新的头结点
+     */
+    public static Node reverse2(Node head) {
+        if (head.next == null) {
+            return head;
+        }
+        Node reNode = reverse2(head.next);
+        head.next.next = head;
+        head.next = null;
+        return reNode;
+    }
+
+    public int getListLength(Node head) {
+        Node cur = head;
+        int count = 0;
+        while (cur != null) {
+            cur = cur.next;
+            count++;
+        }
+        return count;
     }
 }
