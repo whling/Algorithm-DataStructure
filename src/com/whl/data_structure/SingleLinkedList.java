@@ -90,10 +90,10 @@ public class SingleLinkedList {
         if (head.next == null) {
             return head;
         }
-        Node reNode = reverse2(head.next);
+        Node preNode = reverse2(head.next);
         head.next.next = head;
         head.next = null;
-        return reNode;
+        return preNode;
     }
 
     public int getListLength(Node head) {
